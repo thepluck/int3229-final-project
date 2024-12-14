@@ -85,9 +85,9 @@ public class Driver {
 						
 					String input, output;	
 							
-					input = "/home/rohit/workspace/Bda/input/";	
+					input = "./hadoop/input/";	
 						
-					output = "/home/rohit/workspace/Bda/output";		
+					output = "./hadoop/output";		
 					FileInputFormat.setInputPaths(conf1, new Path(input));
 					FileOutputFormat.setOutputPath(conf1, new Path(output));
 					client1.setConf(conf1);
@@ -116,9 +116,9 @@ public class Driver {
 						
 					String input1, output1;	
 							
-					input1 = "/home/rohit/workspace/Bda/output/part-00000";	
+					input1 = "./hadoop/output/part-00000";	
 						
-					output1 = "/home/rohit/workspace/Bda/output1";		
+					output1 = "./hadoop/output1";		
 					FileInputFormat.setInputPaths(conf2, new Path(input1));
 					FileOutputFormat.setOutputPath(conf2, new Path(output1));
 					client2.setConf(conf2);
@@ -134,7 +134,7 @@ public class Driver {
 					 * Sort the second job output file and sort for top 100 movie pairs
 					 */
 					try{
-						Path pt=new Path("/home/rohit/workspace/Bda/output1/part-00000");
+						Path pt=new Path("./hadoop/output1/part-00000");
 				        FileSystem fs = FileSystem.get(new Configuration());
 				        BufferedReader bufferReader = new BufferedReader(new InputStreamReader(fs.open(pt)));
 				        String line;
@@ -164,7 +164,7 @@ public class Driver {
 				        
 				        int count = 0;
 				        
-				        Path pt2=new Path("/home/rohit/workspace/Bda/final/final.txt");
+				        Path pt2=new Path("./hadoop/final/final.txt");
 						FileSystem fs1 = FileSystem.get(new Configuration());
 						FSDataOutputStream fsOutStream = fs1.create(pt2, true);
 						BufferedWriter br1 = new BufferedWriter( new OutputStreamWriter(fsOutStream, "UTF-8" ) );

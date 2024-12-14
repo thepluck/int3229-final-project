@@ -51,8 +51,8 @@ public class Question3 {
     conf.setReducerClass(Reduce.class);
     conf.setInputFormat(TextInputFormat.class);
     conf.setOutputFormat(TextOutputFormat.class);
-    FileInputFormat.setInputPaths(conf, new Path("/home/rohit/workspace/Bda/input123/"));
-    FileOutputFormat.setOutputPath(conf, new Path("/home/rohit/workspace/Bda/outputq3/"));
+    FileInputFormat.setInputPaths(conf, new Path("./hadoop/input123/"));
+    FileOutputFormat.setOutputPath(conf, new Path("./hadoop/outputq3/"));
     JobClient.runJob(conf);
     //myCustomRunJob(conf);
   }
