@@ -48,24 +48,7 @@ public class Driver {
 				/*
 				 * Read the centroid file into a Hashmap
 				 */
-//				arguments=args[0];
 				arguments="242,51,86";
-				/*
-				try{
-					Path pt=new Path("/user/root/input/data");
-			        FileSystem fs = FileSystem.get(new Configuration());
-			        BufferedReader bufferReader = new BufferedReader(new InputStreamReader(fs.open(pt)));
-			        String line;
-		
-			        while ((line = bufferReader.readLine()) != null)   {
-			        	
-			        }
-			        bufferReader.close();
-			    }
-			    catch(Exception e){
-			    	System.out.println("Error while reading file line by line:" + e.getMessage());                      
-			    }*/
-				
 				/*
 				 * 	Job 1: Gathering each user's list of rated movies
 				 */
@@ -73,11 +56,7 @@ public class Driver {
 					JobConf conf1 = new JobConf(Driver.class);
 					
 					conf1.setMapperClass(Mapper1.class);
-					//conf1.setPartitionerClass(CFPartitioner.class);
 					conf1.setReducerClass(Reducer1.class);
-					//conf1.setNumReduceTasks(3);
-					
-					//Set the output types for mapper and reducer Class
 					conf1.setMapOutputKeyClass(Text.class);
 					conf1.setMapOutputValueClass(Text.class);
 					conf1.setOutputKeyClass(Text.class);
@@ -104,11 +83,7 @@ public class Driver {
 					JobConf conf2 = new JobConf(Driver.class);
 					
 					conf2.setMapperClass(Mapper2.class);
-					//conf1.setPartitionerClass(CFPartitioner.class);
 					conf2.setReducerClass(Reducer2.class);
-					//conf1.setNumReduceTasks(3);
-					
-					//Set the output types for mapper and reducer Class
 					conf2.setMapOutputKeyClass(Text.class);
 					conf2.setMapOutputValueClass(Text.class);
 					conf2.setOutputKeyClass(Text.class);
@@ -130,15 +105,11 @@ public class Driver {
 					e.printStackTrace();
 					}
 					
-					/*
-					 * Sort the second job output file and sort for top 100 movie pairs
-					 */
 					try{
 						Path pt=new Path("./hadoop/output1/part-00000");
 				        FileSystem fs = FileSystem.get(new Configuration());
 				        BufferedReader bufferReader = new BufferedReader(new InputStreamReader(fs.open(pt)));
 				        String line;
-				        //HashMap<String, Double> similarity = new HashMap<String, Double>();
 				        LinkedHashMap<String, Double> similarity = new LinkedHashMap<String, Double>();
 			
 				        while ((line = bufferReader.readLine()) != null)   {
@@ -160,7 +131,6 @@ public class Driver {
 				        }
 				        Collections.sort(valueF);
 				        Collections.reverse(valueF);
-				        //System.out.println("Sorted: ");
 				        
 				        int count = 0;
 				        
@@ -168,9 +138,6 @@ public class Driver {
 						FileSystem fs1 = FileSystem.get(new Configuration());
 						FSDataOutputStream fsOutStream = fs1.create(pt2, true);
 						BufferedWriter br1 = new BufferedWriter( new OutputStreamWriter(fsOutStream, "UTF-8" ) );
-						//br.write("Hello World");
-						//br1.write("C1	23357,401753,229671,826166,670144,946988,255137,89322,361894,828360"+"\n");
-						//br1.close();
 				        
 				        Driver obj = new Driver();
 				        for(double temp: valueF){
@@ -193,15 +160,6 @@ public class Driver {
 				    catch(Exception e){
 				    	System.out.println("Error while reading file line by line:" + e.getMessage());                      
 				    }
-					
-					/*
-					Path pt2=new Path("/user/root/input1/centroid.txt");
-					FileSystem fs = FileSystem.get(new Configuration());
-					FSDataOutputStream fsOutStream = fs.create(pt2, true);
-					BufferedWriter br = new BufferedWriter( new OutputStreamWriter(fsOutStream, "UTF-8" ) );
-					//br.write("Hello World");
-					br.write("C1	23357,401753,229671,826166,670144,946988,255137,89322,361894,828360"+"\n");
-					br.close();*/
 	}
 
 }

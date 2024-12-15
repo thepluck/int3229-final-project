@@ -16,8 +16,6 @@ public class Question3 {
          val = myarray[0];
          area.set(val);
          FloatWritable wr = new FloatWritable(Float.parseFloat(myarray[5]));
-         //System.out.println(myarray[4]);
-         //System.out.println(myarray[5]);
          output.collect(area, wr);
     }
   }
@@ -33,15 +31,6 @@ public class Question3 {
     }
   }
 
-//  public static RunningJob myCustomRunJob(JobConf job) throws Exception {
-//	    JobClient jc = new JobClient(job);
-//	    RunningJob rj = jc.submitJob(job);
-//	    if (!jc.monitorAndPrintJob(job, rj)) {
-//	      throw new IOException("Job failed with info: " + rj.getFailureInfo());
-//	    }
-//	    return rj;
-//	  }
-  
   public static void main(String[] args) throws Exception {
     JobConf conf = new JobConf(Question3.class);
     conf.setJobName("regionCount");
@@ -54,6 +43,6 @@ public class Question3 {
     FileInputFormat.setInputPaths(conf, new Path("./hadoop/input123/"));
     FileOutputFormat.setOutputPath(conf, new Path("./hadoop/outputq3/"));
     JobClient.runJob(conf);
-    //myCustomRunJob(conf);
+
   }
 }

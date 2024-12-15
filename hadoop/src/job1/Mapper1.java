@@ -10,7 +10,6 @@ implements Mapper<LongWritable, Text, Text,Text>{
 			OutputCollector<Text, Text> output, Reporter reporter) throws IOException {
 		
 		String[] values = value.toString().split("\t");
-		//System.out.println("Hiiiii "+values[0]);
 		String valueFinal = values[1];
 		output.collect(new Text(values[0]), new Text(valueFinal));
 	}
